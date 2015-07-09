@@ -1,0 +1,93 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title>包装对象和Boolean对象</title>
+	<script type="text/javascript">
+	   var v1 = new Number(123);
+	   var v2 = new String("abc");
+	   var v3 = new Boolean(true);
+
+	   console.log(typeof v1); //object
+	   console.log(typeof v2); //object
+	   console.log(typeof v3); //object
+	   console.log(v1 === 123); //false
+	   console.log(v2 === "abc"); //false
+	   console.log(v3 === true); //false
+	   console.log(Number(123)); //123
+	   console.log(String("abc")); //abc
+	   console.log(Boolean(true)); //true
+
+	   console.log(v1.valueOf()); //123
+	   console.log(v2.valueOf()); //abc
+	   console.log(v3.valueOf()); //true
+
+	   console.log(v1.toString()); //123
+	   console.log(v2.toString()); //abc
+	   console.log(v3.toString()); //true
+
+	   console.log('abc'.charAt === String.prototype.charAt);
+
+	   //如果包装对象与原始类型值进行混合运算,包装对象会转化为原始类型
+	   console.log(v1 + 123); //246
+	   console.log(v2 + "abc"); //abcabc
+
+	   //在原型上添加自定义方法和属性,供原始类型的值直接使用
+	   String.prototype.double = function(){
+	   	   return this.valueOf() + this.valueOf();
+	   };
+	   console.log('abc'.double()); //abcabc
+
+	   Number.prototype.double = function(){
+	   	   return this.valueOf() + this.valueOf();
+	   };
+	   console.log((123).double()); //246
+
+       //所有对象的布尔运算结果都是true,而实例的valueOf方法,则返回实例对应的原始类型值
+	   if (new Boolean(false)) {
+	   	 console.log("true"); 
+	   }; //true
+	   if (new Boolean(false).valueOf()) {
+	   	 console.log("true");
+	   }; //无输出
+
+	   //Boolean函数的类型转换
+	   console.log("=================");
+	   console.log(Boolean(undefined)); //false
+	   console.log(Boolean(null)); //false
+	   console.log(Boolean(0)); //false
+	   console.log(Boolean('')); //false
+	   console.log(Boolean(NaN)); //false
+	   console.log(Boolean(1)); //true
+	   console.log(Boolean(false)); //false
+	   console.log(Boolean('false')); //true
+	   console.log(Boolean([])); //true
+	   console.log(Boolean({})); //true
+	   console.log(Boolean(function(){})); //true
+	   console.log(Boolean(/foo/)); //true
+       //not运算符可以达到同样的效果
+       console.log("=================");
+	   console.log(!!undefined); //false
+	   console.log(!!null); //false
+	   console.log(!!0); //false
+	   console.log(!!''); //false
+	   console.log(!!NaN); //false
+	   console.log(!!1); //true
+	   console.log(!!false); //false
+	   console.log(!!'false'); //true
+	   console.log(!![]); //true
+	   console.log(!!{}); //true
+	   console.log(!!function(){}); //true
+	   console.log(!!/foo/); //true
+
+       //获得一个变量对应的布尔值,有3种写法
+       console.log("=================");
+       var a = "hello world";
+       console.log(new Boolean(a).valueOf()); //true
+       console.log(Boolean(a)); //true
+       console.log(!!a); //true
+	</script>
+</head>
+<body>
+
+</body>
+</html>
