@@ -1,0 +1,80 @@
+<<!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Number对象</title>
+        <script type="text/javascript">
+        var n = new Number(1);
+        console.log(typeof n); //object
+        console.log(Number(true)); //1
+
+        //Number对象的属性
+        console.log(Number.POSITIVE_INFINITY); //Infinity
+        console.log(Number.NEGATIVE_INFINITY); //-Infinity
+        console.log(Number.NaN); //NaN
+        console.log(Number.MAX_VALUE); //1.7976931348623157e+308
+        console.log(Number.MIN_VALUE); //5e-324
+
+        //Number对象的实例方法
+        //表示将一个数字转化成某个进制的字符串
+        console.log((10).toString()); //10
+        console.log((10).toString(2)); //1010
+        console.log((10).toString(8)); //12
+        console.log((10).toString(16)); //a
+
+        //第一个点理解成小数点,第二个点理解成调用属性
+        console.log(10..toString(2));
+
+        console.log(10.5.toString()); //10.5
+        console.log(10.5.toString(2)); //1010.1
+        console.log(10.5.toString(8)); //12.4
+        console.log(10.5.toString(16)); //a.8
+
+        console.log(10['toString'](2)); //1010
+
+        //Number.prototype.toFixed()
+        console.log((10).toFixed(2)); //10.00
+        console.log((10.005).toFixed(2)); //10.01
+
+        //Number.prototype.toExponential() 将一个数转为科学计数法
+        console.log((10).toExponential(1)); //1.0e+1
+        console.log((1234).toExponential(1)); //1.2e+3
+
+        //toPrecision方法用于将一个数转为指定位数的有效数字
+        console.log((12.34).toPrecision(1)); //1e+1
+        console.log((12.34).toPrecision(2)); //12
+        console.log((12.34).toPrecision(3)); //12.3
+        console.log((12.34).toPrecision(4)); //12.34
+        console.log((13.34).toPrecision(5)); //12.340
+        //四舍五入不够精确
+        console.log((12.15).toPrecision(3)); //12.2
+        console.log((12.25).toPrecision(3)); //12.3
+        console.log((12.35).toPrecision(3)); //12.3
+        console.log((12.45).toPrecision(3)); //12.4
+
+        Number.prototype.add = function(x){
+        	return this + x;
+        };
+        Number.prototype.subtract = function(x){
+        	return this - x;
+        };
+        console.log(8["add"](2)); //10
+        console.log((8).add(2)); //11
+        console.log((8).add(2).subtract(4)); //6
+
+        Number.prototype.iterate = function(){
+        	var result = [];
+        	for(var i=0; i<=this; i++){
+        		result.push(i);
+        	}
+        	return result;
+        };
+
+        console.log((8).iterate());
+        </script>
+    </head>
+
+    <body>
+    </body>
+
+    </html>

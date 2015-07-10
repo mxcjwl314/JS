@@ -1,0 +1,120 @@
+<<!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>RegExp对象</title>
+        <script type="text/javascript">
+        /*
+         参考文章
+         http://javascript.ruanyifeng.com/stdlib/regexp.html 
+        */
+        var regex = /xyz/;
+        var regex2 = new RegExp("xyz");
+
+        var r = /abc/igm;
+        console.log(r.ignoreCase); //true
+        console.log(r.global); //true
+        console.log(r.multiline); //true
+        console.log(r.lastIndex); //0
+        console.log(r.source); //abc
+        console.log(/cat/.test('cats and dogs'));
+
+        var r2 = /x/g;
+        var s = '_x_x';
+        console.log(r2.lastIndex); //0
+        console.log(r2.test(s)); //true
+        console.log(r2.lastIndex); //2
+        console.log(r2.test(s)); //true
+        console.log(r2.lastIndex); //4
+        console.log(r2.test(s)); //false
+
+        console.log(new RegExp("").test("abc")); //true
+
+        var r2 = /x/;
+        var r3 = /y/;
+        console.log(r2.exec(s)); //["x", index: 1, input: "_x_x"]
+        console.log(r3.exec(s)); //null
+
+        var r4 = /_(x)/;
+        console.log(r4.exec(s)); //["_x", "x", index: 0, input: "_x_x"]
+
+        var r5 = /a(b+)a/g;
+        var a1 = r5.exec("_abbba_aba_");
+        console.log(a1); //["abbba", "bbb", index: 1, input: "_abbba_aba_"]
+        console.log(a1.index); //1
+        console.log(r5.lastIndex); //6
+        var a2 = r5.exec("_abbba_aba_");
+        console.log(a2); //["aba", "b", index: 7, input: "_abbba_aba_"]
+        console.log(a2.index); //7
+        console.log(r5.lastIndex); //10
+        var a3 = r5.exec("_abbba_aba_");
+        console.log(a3); //null
+        //console.log(a3.index); //Uncaught TypeError: Cannot read property 'index' of null
+        console.log(r5.lastIndex); //0
+        var a4 = r5.exec("_abbba_aba_");
+        console.log(a4); //["abbba", "bbb", index: 1, input: "_abbba_aba_"]
+        console.log(a4.index); //1
+        console.log(r5.lastIndex); //6
+
+        var r6 = /a(b+)a/g;
+        var s2 = "_abbba_aba_";
+        while (true) {
+            var match = r6.exec(s2);
+            if (!match) {
+                break;
+            };
+            console.log(match[1]);
+        } //bbb  b
+
+        var r7 = new RegExp("");
+        var a5 = r7.exec("abc");
+        console.log(a5); //["", index: 0, input: "abc"]
+        console.log(a5.index); //0
+        console.log(r7.lastIndex); //0
+
+        var r8 = new RegExp("()");
+        var a6 = r8.exec("abc");
+        console.log(r8.exec("abc")); //["", "", index: 0, input: "abc"]
+        console.log(a6.index); //0
+        console.log(r8.lastIndex); //0
+
+        console.log(s.match(r2)); //["x", index: 1, input: "_x_x"]
+        console.log(s.match(r3)); //null
+
+        var s3 = "abba";
+        var r9 = /a/g;
+        console.log(s3.match(r9)); //["a", "a"]
+        console.log(r9.exec(s3)); //["a", index: 0, input: "abba"]
+
+        //search方法
+        console.log(('_x_x').search(/x/)); //1
+        //replace方法
+        console.log("aaa".replace(/a/, 'b')); //baa
+        console.log("aaa".replace(/a/g, 'b')); //bbb
+
+        var str = " #id div.class ";
+        console.log(str.replace(/^\s+|\s+$/g, '')); //#id div.class
+        console.log(str.replace(/^\s\s*/, '').replace(/\s\s*$/, '')); //#id div.class
+
+        var r10 = "3 and 5".replace(/[0-9]+/g, function(match) {
+            return 2 * match;
+        });
+        console.log(r10); //6 and 10
+
+        var s4 = "The quick brown fox jumped over the lazy dog.";
+        var pattern = /quick|brown|lazy/ig;
+        var r11 = s4.replace(pattern, function replacer(match) {
+            return match.toUpperCase();
+        });
+        console.log(r11); //The QUICK BROWN fox jumped over the LAZY dog.
+
+        console.log('a,  b,c, d'.split(/, */)); //["a", "b", "c", "d"]
+        console.log('a,  b,c, d'.split(/, */, 2)); //["a", "b"]
+        </script>
+    </head>
+
+    <body>
+        
+    </body>
+
+    </html>

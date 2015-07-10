@@ -1,0 +1,52 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title>String对象</title>
+	<script type="text/javascript">
+        var s = new String("abc");
+        console.log(typeof s);  //object 
+        console.log(s.valueOf()); //abc
+        console.log(String.fromCharCode(104, 101, 108, 108, 111)); //hello
+        console.log(String.fromCharCode(0x20BB7)); //ஷ
+        console.log(s.charAt(1)); //b
+        console.log(s.charAt(s.length - 1)); //c
+        console.log("abc"[1]); //b
+        console.log(s.charCodeAt(1)); //98
+        console.log("a".concat("b", "c")); //abc
+        var a = 'The Three Musketeers';
+        console.log(a.substring(4,9)); //Three
+        console.log(a.substring(9,4)); //Three
+        console.log(a.substr(4, 9)); //Three Mus
+        console.log(a.substr(9, 4)); // Mus
+        console.log(a.slice(4, 9)); //Three
+        console.log(a.slice(9, 4)); //
+        console.log("hello world".indexOf("o")); //4
+        console.log("hello world".lastIndexOf("o")); //7
+        console.log("hello world".indexOf("o", 6)); //7
+        console.log("hello world".lastIndexOf("o", 6)); //4
+        console.log((" hell world ").trim()); //hell world
+        console.log("hello world".toLowerCase());
+        console.log("hello world".toUpperCase());
+        console.log("apple".localeCompare("banana")); //-1
+        console.log("apple".localeCompare("apple")); //0
+
+        var matches = "cat, bat, sat, fat".match("at");
+        console.log(matches.index); //1
+        console.log(matches.input); //cat, bat, sat, fat
+        console.log("cat, bat, sat, fat".search("at")); //1
+        console.log("aaa".replace("a", "b")); //baa
+
+        console.log("a|b|c".split("|")); //["a", "b", "c"]
+        console.log("a|b|c".split("")); //["a", "|", "b", "|", "c"]
+        console.log("a|b|c".split()); //["a|b|c"]
+        console.log("a|b|c".split('|', 0)); //[]
+        console.log("a|b|c".split('|', 1)); //["a"]
+        console.log("a|b|c".split('|', 2)); //["a", "b"]
+        console.log("a|b|c".split('|', 3)); //["a", "b", "c"]
+        console.log("a|b|c".split('|', 4)); //["a", "b", "c"]
+	</script>
+</head>
+<body>
+
+</body>
+</html>
